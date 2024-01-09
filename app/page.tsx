@@ -1,5 +1,6 @@
 // import Image from 'next/image'
 import Link from 'next/link'
+import ProductCard from './components/ProductCard'
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
 
       {/* 這才是正確的Clinet Side Navigation方式 */}
       <Link href="/users">Users</Link>
+      <ProductCard/>
       </main>
     
   )
