@@ -14,5 +14,11 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  padding: 1rem;
+}
+
+/* 幫所有h1 都製作相同的layout */
+@layer base {
+  h1 {
+    @apply font-extrabold  text-2xl mb-3;
+  }
 }
