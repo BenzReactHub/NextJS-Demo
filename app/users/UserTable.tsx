@@ -1,4 +1,6 @@
+import Link from "next/link";
 import React from "react";
+import { sort } from "fast-sort";
 
 interface User {
   id: number;
@@ -6,9 +8,12 @@ interface User {
   email: string;
 }
 
+interface Props {
+  sortOrder: string;
+}
 
 // 注意，這邊的渲染是發生在server上面
-const UserTable = async () => {
+const UserTable = async ({ sortOrder }: Props) => {
   // 經常跟新的data，我們就不要做緩存
   const res = await fetch("https://jsonplaceholder.typicode.com/users", {
     cache: "no-store",
@@ -18,16 +23,24 @@ const UserTable = async () => {
   // const res = await fetch('https://jsonplaceholder.typicode.com/users', {next: { revalidate: 10 }});
 
   const users: User[] = await res.json();
+
+  const sortedUsers = sort(users).asc(
+    sortOrder === "email" ? (user) => user.email : (user) => user.name
+  );
   return (
     <table className="table table-bordered">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
+          <th>
+            <Link href="/users?sortOrder=name">Name</Link>
+          </th>
+          <th>
+            <Link href="/users?sortOrder=email">Email</Link>
+          </th>
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
+        {sortedUsers.map((user) => (
           <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.email}</td>
