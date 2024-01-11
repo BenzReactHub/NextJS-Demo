@@ -1,15 +1,15 @@
 // import Image from 'next/image'
 import Link from 'next/link'
 import ProductCard from './components/ProductCard'
+import { getServerSession } from 'next-auth'
+import { authOptions } from './api/auth/[...nextauth]/route'
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions)
   return (
     <main>
-      <h1>Hello World XD</h1>
-      {/* 這不是好的Navigation方式 */}
-      {/* <a href="/user">Users</a> */}
+      <h1>Hello World { session && <span>{session.user!.name}</span> }</h1>
 
-      {/* 這才是正確的Clinet Side Navigation方式 */}
       <Link href="/users">Users</Link>
       <ProductCard/>
       </main>
