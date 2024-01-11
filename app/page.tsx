@@ -2,7 +2,8 @@
 // import Link from 'next/link'
 // import ProductCard from './components/ProductCard'
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+// import { authOptions } from "./api/auth/[...nextauth]/route";
+import authOptions from "./api/auth/[...nextauth]/authOptions"
 import Image from "next/image";
 import { Metadata } from "next";
 // import dynamic from "next/dynamic";
