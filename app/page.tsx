@@ -9,6 +9,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
     <main className="relative h-screen">
+      <h1 className="font-poppins">Hello World</h1>
       {/* <h1>Hello World { session && <span>{session.user!.name}</span> }</h1>
 
       <Link href="/users">Users</Link>
