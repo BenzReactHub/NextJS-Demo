@@ -12,7 +12,11 @@ const NavBar = () => {
       <Link href="/products">Products</Link>
       <Link href="/admin">Admin</Link>
       {status === "loading" && <div>Loading...</div>}
-      {status === "authenticated" && <div>{session.user!.name}</div>}
+      {status === "authenticated" && 
+        <div className="flex gap-4">
+          {session.user!.name}  
+          <Link href="/api/auth/signout">Sign out</Link>
+        </div>}
       {status === "unauthenticated" && (
         <Link href="/api/auth/signin">Login</Link>
       )}
